@@ -1,0 +1,33 @@
+graph TD
+    subgraph Subestación AT (Barra Anillo)
+        A[Línea 1] -- Interruptor --> B(Seccionador)
+        B --> C((Barra Anillo));
+        D[Línea 2] -- Interruptor --> E(Seccionador)
+        E --> C;
+        F[Transformador 1] -- Interruptor --> G(Seccionador)
+        G --> C;
+        H[Transformador 2] -- Interruptor --> I(Seccionador)
+        I --> C;
+        C --> B;
+        C --> E;
+        C --> G;
+        C --> I;
+    end
+
+    subgraph Subestación BT (Barra Principal con Transferencia)
+        J[Transformador 1] --> K(Interruptor Principal)
+        L[Transformador 2] --> M(Interruptor Principal)
+        K --> N((Barra Principal));
+        M --> N;
+        O[Línea 3] -- Interruptor --> P(Seccionador)
+        P --> N;
+        Q[Línea 4] -- Interruptor --> R(Seccionador)
+        R --> N;
+        S((Barra de Transferencia))
+        K -- Interruptor de Transferencia --> S
+        M -- Interruptor de Transferencia --> S
+        N -- Seccionador de Barra --> S
+    end
+
+    H --> J;
+    F --> L;
